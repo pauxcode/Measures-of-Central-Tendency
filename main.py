@@ -3,6 +3,7 @@ import numpy as np
 import statistics as stat
 import pandas as pd
 import matplotlib.pyplot as plt
+from io import open
 
 def sort(arr):
     return np.sort(arr)
@@ -20,16 +21,35 @@ def mode(arr):
     return stat.multimode(arr)
 
 if __name__ == "__main__":
+    # lis = []
+    # lis_lis = []
+    # N = int(input("Cuantos datos vas a ingresar? "))
+
+   #  for x in range(N):
+        # dato = float(input("\nIngresa el dato {}: ".format(x+1)))
+        # dato2 = [str(x), dato]
+        # lis.append(dato)
+        # lis_lis.append(dato2)
+
+    
+    archivo = open('datos.txt', 'r')
+    
+    numeros = archivo.read()
+    lineas = archivo.readline()
+    
+    archivo.close()
+    
     lis = []
     lis_lis = []
-    N = int(input("Cuantos datos vas a ingresar? "))
+    
+    for numero in numeros:
+        if numero != ' ':
+            if numero != '\n':
+                lis.append(float(numero))
 
-    for x in range(N):
-        dato = float(input("\nIngresa el dato {}: ".format(x+1)))
-        dato2 = [str(x), dato]
-        lis.append(dato)
-        lis_lis.append(dato2)
-
+                numero_list = [numero, float(numero)]
+                lis_lis.append(numero_list)
+    
     arr = np.array(lis)
 
     print("\nLos datos ordenados quedan asi: {}".format(sort(arr)))
